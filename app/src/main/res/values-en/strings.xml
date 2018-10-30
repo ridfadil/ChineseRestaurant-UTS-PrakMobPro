@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Chinese Restaurant</string>
+    <string name="restoran_cina">Chinese Restaurant</string>
+    <string name="telepon">Telephone</string>
+    <string name="lokasi">Location</string>
+    <string name="pesan">Order</string>
+    <string name="silakan_pilih_menu">please select the menu</string>
+    <string name="harga">Price</string>
+    <string name="jumlah">Total</string>
+    <string name="ulasan_pesanan">Review Order</string>
+    <string name="total_harga">Total Price : </string>
+    <string name="selesai">Done</string>
+    <string name="batal">Cancel</string>
+    <string name="menu_makanan">Food Menu : </string>
+    <string name="menu_minuman">Drink Menu : </string>
+</resources>
