@@ -17,7 +17,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_pesan"
@@ -26,6 +27,14 @@
             android:layout_margin="2dp"
             android:background="@color/colorPrimary"
             android:text="Pesan"
+            android:textColor="@color/wihe" />
+        <Button
+            android:id="@+id/btn_add_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@color/colorPrimary"
+            android:text="Tambah Menu"
             android:textColor="@color/wihe" />
     </LinearLayout>
 

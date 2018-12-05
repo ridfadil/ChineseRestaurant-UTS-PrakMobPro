@@ -8,12 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import praktikum.latihan.com.tugasmobpro.R;
 import praktikum.latihan.com.tugasmobpro.adapter.ListMenuAdapter;
+import praktikum.latihan.com.tugasmobpro.database.DBHelper;
 import praktikum.latihan.com.tugasmobpro.model.MenuModel;
 
 /**
@@ -23,11 +26,14 @@ import praktikum.latihan.com.tugasmobpro.model.MenuModel;
 
 public class ListMenuActivity extends AppCompatActivity {
 
-    private final LinkedList<MenuModel> listResto = new LinkedList<>();
+    private List<MenuModel> listResto = new ArrayList<>();
     @BindView(R.id.btn_pesan)
     Button btnPesan;
+    @BindView(R.id.btn_add_menu)
+    Button btnAddMenu;
 
     private RecyclerView mRecyclerView;
+    private DBHelper dbHelper;
     private ListMenuAdapter mAdapter;
 
     @Override
@@ -36,10 +42,11 @@ public class ListMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_menu);
         ButterKnife.bind(this);
         //initialized();
+        dbHelper = new DBHelper(this);
         //onClick();
         btnPesan.setText(getResources().getString(R.string.pesan));
 
-        String f = "Makanan";
+        /*String f = "Makanan";
         String d = "Minuman";
 
         String descKatsu = "Hidangan ini biasanya dimakan dengan sejenis kecap inggris kental saus tonkatsu atau singkatnya sōsu (saus), karashi (moster) dan kadang irisan lemon. Biasanya tonkatsu disajikan dengan nasi putih, sup miso dan tsukemono (sejenis acar Jepang) dan dimakan dengan menggunakan sumpit. Kadang-kadang selain disajikan dengan saus tonkatsu, hidangan ini bisa juga disajikan dengan saus ponzu dan parutan lobak ";
@@ -52,24 +59,31 @@ public class ListMenuActivity extends AppCompatActivity {
         String descTeh = "adalah teh herbal terapi yang terbuat dari bunga krisan/bunga kekwa (Chrysanthemum morifolii) juga dikenal sebagai Ju Hua dalam istilah bahasa cina, yang telah digunakan dalam pengobatan tradisional Cina selama berabad-abad.";
         String descJiuniang = "adalah sebuah minuman tradisional Jepang yang rasanya manis dan rendah atau tak-beralkohol (tergantung resep) yang terbuat dari nasi yang difermentasikan";
 
-        listResto.addLast(new MenuModel(" Katsudon", "Rp.10.000,00", f, descKatsu, R.drawable.katsu));
-        listResto.addLast(new MenuModel(" Thailiss", "Rp.12.000,00", f, descThahilis, R.drawable.tailis));
-        listResto.addLast(new MenuModel(" Bakpao", "Rp.6.000,00", f, descBakpao, R.drawable.bakpao));
-        listResto.addLast(new MenuModel(" Kwetiaw", "Rp.12.000,00", f, descKwetiaw, R.drawable.kwetiaw));
+        listResto.addLast(new MenuModel(" Katsudon", "Rp.10.000,00", f, descKatsu*//*, R.drawable.katsu*//*));
+        listResto.addLast(new MenuModel(" Thailiss", "Rp.12.000,00", f, descThahilis*//*, R.drawable.tailis*//*));
+        listResto.addLast(new MenuModel(" Bakpao", "Rp.6.000,00", f, descBakpao*//*, R.drawable.bakpao*//*));
+        listResto.addLast(new MenuModel(" Kwetiaw", "Rp.12.000,00", f, descKwetiaw*//*, R.drawable.kwetiaw*//*));
 
-        listResto.addLast(new MenuModel(" Jus", "Rp.9.000,00", d, descJus, R.drawable.jus));
-        listResto.addLast(new MenuModel(" Kopi Yunan", "Rp.15.000,00", d, descKopi, R.drawable.kopi));
-        listResto.addLast(new MenuModel(" Teh Krisan", "Rp.12.000,00", d, descTeh, R.drawable.teh));
-        listResto.addLast(new MenuModel(" Jiuniang", "Rp.14.000,00", d, descJiuniang, R.drawable.jiuniang));
+        listResto.addLast(new MenuModel(" Jus", "Rp.9.000,00", d, descJus*//*, R.drawable.jus*//*));
+        listResto.addLast(new MenuModel(" Kopi Yunan", "Rp.15.000,00", d, descKopi*//*, R.drawable.kopi*//*));
+        listResto.addLast(new MenuModel(" Teh Krisan", "Rp.12.000,00", d, descTeh*//*, R.drawable.teh*//*));
+        listResto.addLast(new MenuModel(" Jiuniang", "Rp.14.000,00", d, descJiuniang*//*, R.drawable.jiuniang*//*));*/
 
-        mRecyclerView = findViewById(R.id.rv_list_menu);
-        mAdapter = new ListMenuAdapter(ListMenuActivity.this, listResto);
+        listResto = dbHelper.tampilData();
+                mRecyclerView = findViewById(R.id.rv_list_menu);
+        mAdapter = new ListMenuAdapter(ListMenuActivity.this, listResto,dbHelper);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnPesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ListMenuActivity.this, HargaActivity.class));
+            }
+        });
+        btnAddMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ListMenuActivity.this, AddMenuActivity.class));
             }
         });
     }

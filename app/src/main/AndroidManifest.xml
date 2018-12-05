@@ -20,7 +20,9 @@
         <activity android:name=".activity.DetailActivity" />
         <activity android:name=".activity.ListMenuActivity" />
         <activity android:name=".activity.DetailMenuActivity" />
-        <activity android:name=".activity.ProfilActivity"></activity>
+        <activity android:name=".activity.ProfilActivity" />
+        <activity android:name=".activity.AddMenuActivity" />
+        <activity android:name=".activity.EditMenuActivity"></activity>
     </application>
 
 </manifest>

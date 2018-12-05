@@ -7,13 +7,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+
 import praktikum.latihan.com.tugasmobpro.R;
 import praktikum.latihan.com.tugasmobpro.activity.DetailActivity;
 import praktikum.latihan.com.tugasmobpro.activity.DetailMenuActivity;
+import praktikum.latihan.com.tugasmobpro.activity.EditMenuActivity;
 import praktikum.latihan.com.tugasmobpro.activity.HargaActivity;
+import praktikum.latihan.com.tugasmobpro.database.DBHelper;
 import praktikum.latihan.com.tugasmobpro.model.MenuModel;
 
 /**
@@ -25,11 +32,13 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
 
     //deklarasi global variabel
     private Context context;
-    private final LinkedList<MenuModel> listResto;
+    private DBHelper dbHelper;
+    private List<MenuModel> listResto = new ArrayList<>();
 
     //konstruktor untuk menerima data adapter
-    public ListMenuAdapter(Context context, LinkedList<MenuModel> listResto) {
+    public ListMenuAdapter(Context context, List<MenuModel> listResto, DBHelper dbHelper) {
         this.context = context;
+        this.dbHelper = dbHelper;
         this.listResto = listResto;
     }
 
@@ -46,12 +55,36 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
 
     //bind view holder berfungsi untuk set data ke view yang ditampilkan pada list item
     @Override
-    public void onBindViewHolder(ListMenuViewHolder holder, int position) {
+    public void onBindViewHolder(ListMenuViewHolder holder, final int position) {
         final MenuModel mCurrent = listResto.get(position);
         holder.namaMenu.setText(mCurrent.getNamaMenu());
         holder.hargaMenu.setText(mCurrent.getHargaMenu());
         holder.keteranganMenu.setText(mCurrent.getKeteranganMenu());
-        holder.gambarMenu.setImageResource(mCurrent.getFotoMenu());
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbHelper.DeleteData(mCurrent.getId());
+                listResto.remove(mCurrent);
+                notifyDataSetChanged();
+            }
+        });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MenuModel element = listResto.get(position);
+
+                Intent i = new Intent(context, EditMenuActivity.class);
+                i.putExtra("id", element.getId());
+                i.putExtra("nama", element.getNamaMenu());
+                i.putExtra("harga", element.getHargaMenu());
+                i.putExtra("keterangan", element.getKeteranganMenu());
+                i.putExtra("deskripsi", element.getDeskripsiMenu());
+                //i.putExtra("foto", element.getFotoMenu());
+
+                context.startActivity(i);
+            }
+        });
+        //holder.gambarMenu.setImageResource(mCurrent.getFotoMenu());
 
     }
 
@@ -62,9 +95,10 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
     }
 
     public class ListMenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView namaMenu,hargaMenu,keteranganMenu,cvDetail;
+        private TextView namaMenu, hargaMenu, keteranganMenu, cvDetail;
         private ImageView gambarMenu;
         private CardView cdView;
+        private Button edit, delete;
 
         final ListMenuAdapter mAdapter;
 
@@ -76,6 +110,8 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
             hargaMenu = itemView.findViewById(R.id.tv_list_harga);
             keteranganMenu = itemView.findViewById(R.id.tv_list_keterangan);
             gambarMenu = itemView.findViewById(R.id.iv_list_gambar);
+            edit = itemView.findViewById(R.id.edit);
+            delete = itemView.findViewById(R.id.hapus);
 
             this.mAdapter = adapter;
             cdView.setOnClickListener(this);
@@ -94,7 +130,7 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
             i.putExtra("harga", element.getHargaMenu());
             i.putExtra("keterangan", element.getKeteranganMenu());
             i.putExtra("deskripsi", element.getDeskripsiMenu());
-            i.putExtra("foto", element.getFotoMenu());
+            //i.putExtra("foto", element.getFotoMenu());
 
             context.startActivity(i);
             mAdapter.notifyDataSetChanged();
