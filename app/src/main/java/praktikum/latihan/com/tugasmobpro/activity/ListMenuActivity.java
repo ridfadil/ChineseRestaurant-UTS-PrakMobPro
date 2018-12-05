@@ -70,7 +70,7 @@ public class ListMenuActivity extends AppCompatActivity {
         listResto.addLast(new MenuModel(" Jiuniang", "Rp.14.000,00", d, descJiuniang*//*, R.drawable.jiuniang*//*));*/
 
         listResto = dbHelper.tampilData();
-                mRecyclerView = findViewById(R.id.rv_list_menu);
+        mRecyclerView = findViewById(R.id.rv_list_menu);
         mAdapter = new ListMenuAdapter(ListMenuActivity.this, listResto,dbHelper);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

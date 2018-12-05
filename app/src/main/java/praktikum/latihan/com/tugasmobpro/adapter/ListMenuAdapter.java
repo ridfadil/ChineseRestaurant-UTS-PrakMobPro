@@ -59,7 +59,7 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
         final MenuModel mCurrent = listResto.get(position);
         holder.namaMenu.setText(mCurrent.getNamaMenu());
         holder.hargaMenu.setText(mCurrent.getHargaMenu());
-        holder.keteranganMenu.setText(mCurrent.getKeteranganMenu());
+        holder.keteranganMenu.setText(mCurrent.getJenisMenu());
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +77,7 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
                 i.putExtra("id", element.getId());
                 i.putExtra("nama", element.getNamaMenu());
                 i.putExtra("harga", element.getHargaMenu());
-                i.putExtra("keterangan", element.getKeteranganMenu());
+                i.putExtra("jenis", element.getJenisMenu());
                 i.putExtra("deskripsi", element.getDeskripsiMenu());
                 //i.putExtra("foto", element.getFotoMenu());
 
@@ -128,7 +128,7 @@ public class ListMenuAdapter extends RecyclerView.Adapter<ListMenuAdapter.ListMe
 
             i.putExtra("nama", element.getNamaMenu());
             i.putExtra("harga", element.getHargaMenu());
-            i.putExtra("keterangan", element.getKeteranganMenu());
+            i.putExtra("jenis", element.getJenisMenu());
             i.putExtra("deskripsi", element.getDeskripsiMenu());
             //i.putExtra("foto", element.getFotoMenu());
 

@@ -40,8 +40,8 @@ public class EditMenuActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
         id = getIntent().getStringExtra("id");
         namaMenu = getIntent().getStringExtra("nama");
-        hargaMenu = getIntent().getStringExtra("keterangan");
-        jenisMenu = getIntent().getStringExtra("harga");
+        hargaMenu = getIntent().getStringExtra("harga");
+        jenisMenu = getIntent().getStringExtra("jenis");
         keternagnaMenu = getIntent().getStringExtra("deskripsi");
 
         nama.setText(namaMenu);
@@ -64,7 +64,7 @@ public class EditMenuActivity extends AppCompatActivity {
                 if (keterangan.getText() != null) {
                     keternagnaMenu = keterangan.getText().toString();
                 }
-                if (dbHelper.EditData(id, namaMenu, jenisMenu, hargaMenu, keternagnaMenu)) {
+                if (dbHelper.EditData(id, namaMenu, hargaMenu,jenisMenu,keternagnaMenu)) {
                     Toast.makeText(EditMenuActivity.this, "Edit Berhasil", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(EditMenuActivity.this, ListMenuActivity.class));
                 } else {

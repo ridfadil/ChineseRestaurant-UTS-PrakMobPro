@@ -6,15 +6,15 @@ package praktikum.latihan.com.tugasmobpro.model;
  */
 
 public class MenuModel {
-    private String id, namaMenu, hargaMenu, keteranganMenu, deskripsiMenu;
+    private String id, namaMenu, hargaMenu, jenisMenu, deskripsiMenu;
     //private int fotoMenu;
 
 
-    public MenuModel(String id, String namaMenu, String hargaMenu, String keteranganMenu, String deskripsiMenu) {
+    public MenuModel(String id, String namaMenu, String hargaMenu, String jenisMenu, String deskripsiMenu) {
         this.id = id;
         this.namaMenu = namaMenu;
         this.hargaMenu = hargaMenu;
-        this.keteranganMenu = keteranganMenu;
+        this.jenisMenu = jenisMenu;
         this.deskripsiMenu = deskripsiMenu;
     }
 
@@ -42,12 +42,12 @@ public class MenuModel {
         this.hargaMenu = hargaMenu;
     }
 
-    public String getKeteranganMenu() {
-        return keteranganMenu;
+    public String getJenisMenu() {
+        return jenisMenu;
     }
 
-    public void setKeteranganMenu(String keteranganMenu) {
-        this.keteranganMenu = keteranganMenu;
+    public void setJenisMenu(String jenisMenu) {
+        this.jenisMenu = jenisMenu;
     }
 
     public String getDeskripsiMenu() {

@@ -63,7 +63,7 @@ public class AddMenuActivity extends AppCompatActivity {
             Toast.makeText(this, "Maaf Form Masih ada yang kosong", Toast.LENGTH_SHORT).show();
             form = false;
         } else {
-            if (dbHelper.MasukanData(namaMenu, jenisMenu, hargaMenu, keternagnaMenu)) {
+            if (dbHelper.MasukanData(namaMenu, hargaMenu, jenisMenu, keternagnaMenu)) {
                 Toast.makeText(this, "Data Berhasil Dimasukan", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(AddMenuActivity.this, ListMenuActivity.class));
             } else {

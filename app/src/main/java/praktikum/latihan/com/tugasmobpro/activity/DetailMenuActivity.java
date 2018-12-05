@@ -35,15 +35,15 @@ public class DetailMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_menu);
         ButterKnife.bind(this);
         nama = getIntent().getStringExtra("nama");
-        hargaMenu = getIntent().getStringExtra("keterangan");
-        keteranganMenu = getIntent().getStringExtra("deskripsi");
-        deskripsiMenu = getIntent().getStringExtra("harga");
+        hargaMenu = getIntent().getStringExtra("harga");
+        keteranganMenu = getIntent().getStringExtra("jenis");
+        deskripsiMenu = getIntent().getStringExtra("deskripsi");
         //imageMenu.setImageResource(getIntent().getIntExtra("foto", 0));
 
         namaMenu.setText(nama);
         harga.setText(hargaMenu);
-        keterangan.setText(deskripsiMenu);
-        deskripsi.setText(keteranganMenu);
+        keterangan.setText(keteranganMenu);
+        deskripsi.setText(deskripsiMenu);
 
 
     }
